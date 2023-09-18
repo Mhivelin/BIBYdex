@@ -43,3 +43,26 @@ Les données utilisateur, y compris les photos et les informations sur les espè
 
 ## Conclusion
 Le projet BIBYdex vise à créer une expérience interactive et ludique pour les utilisateurs, en encourageant la découverte et la collecte d'informations sur les espèces animales. L'application lourde et l'application web travailleront de manière synergique pour offrir une expérience complète. Le respect des contraintes techniques et du calendrier de développement sera essentiel pour la réussite de ce projet passionnant.
+
+
+
+## Diagrammes UML
+### Diagramme de cas d'utilisation
+
+```plantuml
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor User
+actor Admin
+rectangle "BIBYdex" {
+  User -- (Take a picture)
+  User -- (View collection)
+  User -- (View ranking)
+  User -- (View total species)
+  Admin -- (Manage users)
+  Admin -- (Manage species)
+  Admin -- (Manage ranking)
+}
+@enduml
+```
