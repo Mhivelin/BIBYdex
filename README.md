@@ -47,22 +47,52 @@ Le projet BIBYdex vise à créer une expérience interactive et ludique pour les
 
 
 ## Diagrammes UML
-### Diagramme de cas d'utilisation
 
-```plantuml
-@startuml
-left to right direction
-skinparam packageStyle rectangle
-actor User
-actor Admin
-rectangle "BIBYdex" {
-  User -- (Take a picture)
-  User -- (View collection)
-  User -- (View ranking)
-  User -- (View total species)
-  Admin -- (Manage users)
-  Admin -- (Manage species)
-  Admin -- (Manage ranking)
-}
-@enduml
+
+
+
+
+### diagramme de séquence
+
+#### création de compte
+```mermaid
+sequenceDiagram
+
+utilisateur->>web:création de compte
+web->>bdd:verification des données
+bdd->>web:confirmation de création de compte
+web->>utilisateur:confirmation de création de compte
+```
+
+#### connexion
+```mermaid
+sequenceDiagram
+
+utilisateur->>web:connexion
+web->>bdd:verification des données
+bdd->>web:confirmation de connexion
+web->>utilisateur:confirmation de connexion
+```
+
+
+
+
+#### prise de photo
+```mermaid
+sequenceDiagram
+
+utilisateur->>app:prendre photo
+app->>api:appel API
+api->>utilisateur:identification de l'espèce
+utilisateur->>app:confirmation de l'espèce
+app->>utilisateur:ajout à la collection
+
+```
+
+#### visionnage de la collection
+```mermaid
+sequenceDiagram
+
+utilisateur->>app:visionnage de la collection
+app->>utilisateur:visionnage de la collection
 ```
