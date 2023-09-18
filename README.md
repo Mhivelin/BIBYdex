@@ -48,6 +48,20 @@ Le projet BIBYdex vise à créer une expérience interactive et ludique pour les
 
 ## Diagrammes UML
 
+````mermaid
+mindmap
+    BIBYdex
+        application lourde
+            connexion
+            prise de photo
+            visionnage de la collection
+        application web
+            creation de compte
+            connexion
+            visionnage de la collection
+            classement des joueurs
+            
+````
 
 
 
