@@ -13,12 +13,3 @@ try {
 } catch (Exception $e) {
     die('Erreur : ' . $e->getMessage());
 }
-
-// Requête SQL
-$sqlQuery = 'SELECT * FROM UTILISATEUR';
-$connect = $db->prepare($sqlQuery);
-$connect->execute();
-$connectVerif = $connect->fetchAll();
-
-// Afficher les résultats
-print_r($connectVerif);
