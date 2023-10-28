@@ -1,7 +1,7 @@
 <?php
 
 // connexion à la base de données
-$servername = 'localhost';
+$servername = '172.16.198.254';
 $dbname = 'BIBYdex';
 $username = 'BIBYdex';
 $password = 'proutBIBYdex';
@@ -17,3 +17,5 @@ $sqlQuery = 'SELECT * FROM UTILISATEUR';
 $connect = $mysqlClient->prepare($sqlQuery);
 $connect->execute();
 $connectVerif = $connect->fetchAll();
+
+echo $connectVerif;
