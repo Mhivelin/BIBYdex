@@ -60,7 +60,7 @@ mindmap
             connexion
             visionnage de la collection
             classement des joueurs
-            
+
 ````
 
 
@@ -72,9 +72,11 @@ mindmap
 ```mermaid
 sequenceDiagram
 
-utilisateur->>web:création de compte
-web->>bdd:verification des données
-bdd->>web:confirmation de création de compte
+utilisateur->>web:création de compte (identifiant, mot de passe)
+web->>bdd:verification des données (identifiant, mot de passe)
+activate bdd
+bdd->>web:confirmation de création de compte 
+deactivate bdd
 web->>utilisateur:confirmation de création de compte
 ```
 
@@ -82,10 +84,12 @@ web->>utilisateur:confirmation de création de compte
 ```mermaid
 sequenceDiagram
 
-utilisateur->>web:connexion
-web->>bdd:verification des données
-bdd->>web:confirmation de connexion
-web->>utilisateur:confirmation de connexion
+utilisateur->>web:connexion (identifiant, mot de passe)
+web->>bdd:verification des données (identifiant, mot de passe)
+activate bdd
+bdd->>web:confirmation de connexion (bool)
+deactivate bdd
+web->>utilisateur:confirmation de connexion (bool)
 ```
 
 
@@ -111,4 +115,15 @@ utilisateur->>app:visionnage de la collection
 app->>utilisateur:visionnage de la collection
 ```
 
-coucou
+## arborescence du projet
+
+- BIBYdex
+    - README.md
+    - Cahier_des_charges.md
+    - application_legere
+      - script
+        - main.py
+      - images
+        - logo.png
+      - style
+        - style.css
