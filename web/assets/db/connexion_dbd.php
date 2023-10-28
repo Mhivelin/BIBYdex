@@ -1,7 +1,7 @@
 <?php
 
 // connexion à la base de données
-$servername = '172.16.198.254';
+$servername = 'azdazdaz';
 $dbname = 'BIBYdex';
 $username = 'BIBYdex';
 $password = 'proutBIBYdex';
