@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // connexion à la base de données
 $servername = 'localhost';
@@ -7,11 +7,13 @@ $username = 'BIBYdex';
 $password = 'proutBIBYdex';
 
 //On établit la connexion    
-try
-{
-	$db = new PDO('mysql:host=' + $servername + ';dbname=' + $dbname + ';charset=utf8', $username, $password);
+try {
+    $db = new PDO('mysql:host=' + $servername + ';dbname=' + $dbname + ';charset=utf8', $username, $password);
+} catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
 }
-catch (Exception $e)
-{
-        die('Erreur : ' . $e->getMessage());
-}
+
+$sqlQuery = 'SELECT * FROM UTILISATEUR';
+$connect = $mysqlClient->prepare($sqlQuery);
+$connect->execute();
+$connectVerif = $connect->fetchAll();
