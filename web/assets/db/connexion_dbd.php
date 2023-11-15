@@ -14,4 +14,10 @@ try {
     die('Erreur : ' . $e->getMessage());
 }
 
-echo 'Connexion réussie';
+// test select *
+
+$select = $db->query('SELECT * FROM `UTILISATEUR`');
+
+// appeler les données de la base de données
+$donnees = $select->fetch();
+echo $donnees;
