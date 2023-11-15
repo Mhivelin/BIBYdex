@@ -3,31 +3,31 @@
 ## creation de la base de données
 
 ```sql
-CREATE TABLE UTILISATEUR(
-   IdUtilisateur SMALLINT,
-   Pseudo VARCHAR(50),
-   Mail VARCHAR(100),
-   PasswordHash VARCHAR(50),
-   PRIMARY KEY(IdUtilisateur)
-);
+   CREATE TABLE UTILISATEUR(
+      IdUtilisateur SMALLINT,
+      Pseudo VARCHAR(50),
+      Mail VARCHAR(100),
+      PasswordHash VARCHAR(50),
+      PRIMARY KEY(IdUtilisateur)
+   );
 
-CREATE TABLE ANIMAL(
-   IdAnimal SMALLINT,
-   Nom VARCHAR(50),
-   Description VARCHAR(500),
-   CheminImage VARCHAR(50),
-   PRIMARY KEY(IdAnimal)
-);
+   CREATE TABLE ANIMAL(
+      IdAnimal SMALLINT,
+      Nom VARCHAR(50),
+      Description VARCHAR(500),
+      CheminImage VARCHAR(50),
+      PRIMARY KEY(IdAnimal)
+   );
 
-CREATE TABLE PHOTO(
-   IdUtilisateur SMALLINT,
-   IdAnimal SMALLINT,
-   CheminPhoto VARCHAR(30),
-   DatePhoto DATE,
-   PRIMARY KEY(IdUtilisateur, IdAnimal),
-   FOREIGN KEY(IdUtilisateur) REFERENCES UTILISATEUR(IdUtilisateur),
-   FOREIGN KEY(IdAnimal) REFERENCES ANIMAL(IdAnimal)
-);
+   CREATE TABLE PHOTO(
+      IdUtilisateur SMALLINT,
+      IdAnimal SMALLINT,
+      CheminPhoto VARCHAR(30),
+      DatePhoto DATE,
+      PRIMARY KEY(IdUtilisateur, IdAnimal),
+      FOREIGN KEY(IdUtilisateur) REFERENCES UTILISATEUR(IdUtilisateur),
+      FOREIGN KEY(IdAnimal) REFERENCES ANIMAL(IdAnimal)
+   );
 
 ```
 
