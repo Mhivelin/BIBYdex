@@ -32,7 +32,10 @@ jobs:
           
           END
 
-      - name; connexion SSH et git pull
+      - name: "connexion SSH et git pull"
+        env:
+          SSH_HOST: $ {{ secrets.SSH_HOST }}
+          SSH_USER: $ {{ secrets.SSH_USER }}
         run: 
           ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/BIBYdex/ && git fetch && git pull'
       
