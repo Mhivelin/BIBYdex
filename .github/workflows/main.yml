@@ -1,0 +1,42 @@
+# nom workflow
+name: "Déploiement auto push branche main"
+
+# Trigger
+on: 
+  push: 
+    branches: 
+      - main
+
+# créer instance Ubuntu
+jobs:
+  creation-vm:
+    name: "création d'une instance de Ubuntu"
+    runs-on: ubuntu-latest
+    
+    steps: 
+      # ajout de la clé privé de l'utilisateur de déploiement
+      - name: "création de jeu de clé SSH pour l'utilisateur de déploiement"
+        env:
+          SSH_KEY: $ {{ secrets.SSH_KEY }}
+          SSH_HOST: $ {{ secrets.SSH_HOST }}
+          SSH_USER: $ {{ secrets.SSH_USER }}
+        run: |
+          # Creation du dossier ~/.ssh sur la VM
+          mkdir -p ~/.ssh/
+
+          # Ajout de la clé privée dans le fichier ~/.ssh/id_rsa
+          echo "$SSH_KEY" > ~/.ssh/id_rsa
+
+          # Le fichier id_rsa DOIT avoir les bons droits
+          chmod 600 ~/.ssh/id_rsa          
+          
+          END
+
+      - name; connexion SSH et git pull
+        run: 
+          ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/BIBYdex/ && git fetch && git pull'
+      
+
+# Connexion SSH à la VM
+
+# Git pull
