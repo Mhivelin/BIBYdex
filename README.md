@@ -127,3 +127,12 @@ app->>utilisateur:visionnage de la collection
         - logo.png
       - style
         - style.css
+
+
+
+
+
+## bdd
+
+### creation de la bdd
+```sql
