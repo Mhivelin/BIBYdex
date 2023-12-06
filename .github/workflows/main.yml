@@ -30,7 +30,7 @@ jobs:
           # Le fichier id_rsa DOIT avoir les bons droits
           chmod 600 ~/.ssh/id_rsa          
           
-          END
+          
 
       - name: "connexion SSH et git pull"
         env:
