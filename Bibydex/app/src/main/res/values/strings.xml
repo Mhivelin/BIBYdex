@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bibydex</string>
+    <string name="se_connecter">Se connecter</string>
+    <string name="nouvelle_photo">Nouvelle photo</string>
+    <string name="galerie">Galerie</string>
+    <string name="menu" />
 </resources>
