@@ -4,7 +4,7 @@
 
 ```sql
    CREATE TABLE UTILISATEUR(
-      IdUtilisateur SMALLINT,
+      IdUtilisateur SMALLINT NOT NULL AUTO_INCREMENT,
       Pseudo VARCHAR(50),
       Mail VARCHAR(100),
       PasswordHash VARCHAR(50),
@@ -12,7 +12,7 @@
    );
 
    CREATE TABLE ANIMAL(
-      IdAnimal SMALLINT,
+      IdAnimal SMALLINT NOT NULL AUTO_INCREMENT,
       Nom VARCHAR(50),
       Description VARCHAR(500),
       CheminImage VARCHAR(50),
@@ -21,7 +21,7 @@
 
    CREATE TABLE PHOTO(
       IdUtilisateur SMALLINT,
-      IdAnimal SMALLINT,
+      IdAnimal SMALLINT NOT NULL AUTO_INCREMENT,
       CheminPhoto VARCHAR(30),
       DatePhoto DATE,
       PRIMARY KEY(IdUtilisateur, IdAnimal),

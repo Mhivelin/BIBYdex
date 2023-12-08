@@ -1,23 +1,44 @@
 <?php
+// page de connexion à la base de donnée
 
-// Connexion à la base de données
-$servername = 'localhost';
-$dbname = 'BIBYdex';
-$username = 'BIBYdex';
-$password = 'proutBIBYdex';
+function parseConfig($filePath) {
+    $config = [];
 
-// On établit la connexion
-try {
-    $db = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch (Exception $e) {
-    die('Erreur : ' . $e->getMessage());
+    if (!file_exists($filePath)) {
+        return $config;
+    }
+
+    $lines = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if ($lines === false) {
+        return $config;
+    }
+
+    foreach ($lines as $line) {
+        if (strpos(trim($line), '#') === 0) {
+            continue; // Ignore les commentaires
+        }
+
+        list($key, $value) = explode('=', $line, 2);
+        $config[trim($key)] = trim($value);
+    }
+
+    return $config;
 }
 
-// test select *
+$config = parseConfig('../../../.env');
 
-$select = $db->query('SELECT * FROM `UTILISATEUR`');
+// Informations de connexion au serveur de base de données
+$servname = $config['DB_HOST'];
+$dbname = $config['DB_DATABASE'];
+$user = $config['DB_USERNAME'];
+$pass = $config['DB_PASSWORD'];
 
-// appeler les données de la base de données
-$donnees = $select->fetch();
-echo $donnees;
+// Connexion à la base avec PDO
+try {
+    $dbh = new PDO("mysql:host=$servname;dbname=$dbname", $user, $pass);
+    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} 
+catch (Exception $e) {
+    die('Erreur : ' . $e->getMessage());
+}
+?>

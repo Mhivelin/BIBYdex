@@ -42,22 +42,45 @@
                     <input type="password" class="form-control" name="password" id="password" required>
 
                     <label for="password" class="form-label">Confirmer le mot de passe</label>
-                    <input type="password" class="form-control" name="password" id="password" required>
+                    <input type="password" class="form-control" name="cpassword" id="cpassword" required>
 
                     </br>
 
                     <!-- Boutton de validation du formulaire : active le script assets/scripts/CreateAccount.php -->
-                    <input type="submit" class="btn btn-primary" value="Se connecter">
+                    <input type="submit" class="btn btn-primary" value="Créer un compte">
 
                 </form>
 
                 </br>
 
                 <!-- Lien vers la page de connexion au cas ou l'utilisateur à déjà un compte -->
-                <h6>Vous avez déjà un compte ? <a href="login.php">Se connecter</a></h3>
+                <h6>Vous avez déjà un compte ? <a href="login-page.php">Se connecter</a></h3>
             </div>
         </div>
     </div>
 </body>
+
+<!-- bootstrap js -->
+<script>
+    // verification du mot de passe Confirmer le mot de passe
+
+    function validatePassword() {
+
+        var password = document.getElementById("password").value;
+        var cPassword = document.getElementById("cpassword").value;
+
+        if (password != cPassword) {
+            document.getElementById("cpassword").setCustomValidity("Les mots de passe ne correspondent pas");
+        } 
+        else {
+            document.getElementById("cpassword").setCustomValidity('');
+        }
+        
+    }
+
+    // listeneur d'évènement sur confirmation du mot de passe quand l'utilisateur sort du champ
+    document.getElementById("cpassword").addEventListener("change", validatePassword);
+</script>
+
 
 </html>

@@ -32,7 +32,7 @@ session_start();
             <div class=" card-body">
 
                 <!-- formulaire  de connexion -->
-                <form action="assets/scripts/login.php" method="post">
+                <form action="assets/db/login.php" method="post">
 
 
                     <!-- pseudo -->
@@ -55,7 +55,7 @@ session_start();
                 </br>
 
                 <!-- Lien vers la page de création de compte -->
-                <h6>Vous n'avez pas de compte ? <a href="CreateAccount.php">Créer un compte</a></h3>
+                <h6>Vous n'avez pas de compte ? <a href="CreateAccount-page.php">Créer un compte</a></h3>
 
             </div>
         </div>
