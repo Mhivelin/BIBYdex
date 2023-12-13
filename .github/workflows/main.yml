@@ -20,6 +20,7 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_KEY }}
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
         run: | 
           # création dossier /.ssh
           mkdir -p ~/.ssh
@@ -29,7 +30,7 @@ jobs:
           chmod 600 ~/.ssh/id_rsa
           
           # configuration de l'hôte dans known_hosts
-          ssh-keyscan -t rsa -p 19722 $SSH_HOST >> ~/.ssh/known_hosts
+          ssh-keyscan -t rsa -p $SSH_PORT $SSH_HOST >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
 # Connexion SSH à la VM
@@ -39,4 +40,4 @@ jobs:
           SSH_USER: ${{ secrets.SSH_USER }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
         run: | 
-          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST 'cd /var/www/html/Portfolio && git fetch && git pull'
+          ssh -p $SSH_PORT $SSH_USER@$SSH_HOST 'cd /var/www/html/BIBYdex && git fetch && git pull'
