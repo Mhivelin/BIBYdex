@@ -17,29 +17,26 @@ jobs:
       # ajout de la clé privé de l'utilisateur de déploiement
       - name: "création de jeu de clé SSH pour l'utilisateur de déploiement"
         env:
-          SSH_KEY: $ {{ secrets.SSH_KEY }}
-          SSH_HOST: $ {{ secrets.SSH_HOST }}
-          SSH_USER: $ {{ secrets.SSH_USER }}
-        run: |
-          # Creation du dossier ~/.ssh sur la VM
-          mkdir -p ~/.ssh/
+          SSH_KEY: ${{ secrets.SSH_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+        run: | 
+          # création dossier /.ssh
+          mkdir -p ~/.ssh
 
-          # Ajout de la clé privée dans le fichier ~/.ssh/id_rsa
+          # ajout de la clé dans le fichier id_rsa
           echo "$SSH_KEY" > ~/.ssh/id_rsa
-
-          # Le fichier id_rsa DOIT avoir les bons droits
-          chmod 600 ~/.ssh/id_rsa          
+          chmod 600 ~/.ssh/id_rsa
           
-          
-
-      - name: "connexion SSH et git pull"
-        env:
-          SSH_HOST: $ {{ secrets.SSH_HOST }}
-          SSH_USER: $ {{ secrets.SSH_USER }}
-        run: 
-          ssh $SSH_USER@$SSH_HOST 'cd /var/www/html/BIBYdex/ && git fetch && git pull'
-      
+          # configuration de l'hôte dans known_hosts
+          ssh-keyscan -t rsa -p 19722 $SSH_HOST >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
 
 # Connexion SSH à la VM
-
-# Git pull
+      - name: "Connexion SSH à la VM"
+        env:
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_USER: ${{ secrets.SSH_USER }}
+          PORT: ${{ secrets.PORT }}
+        run: | 
+          ssh -p $PORT $SSH_USER@$SSH_HOST 'cd /var/www/html/Portfolio && git fetch && git pull'
